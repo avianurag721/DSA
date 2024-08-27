@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-int digitsSum(int num)
+int digitsSumThatDivide(int num)
 {
     int count = 0;
     int tempNum = num;
@@ -9,9 +9,9 @@ int digitsSum(int num)
     {
         // cout << "temp num start "<<tempNum << endl;
         int rem = tempNum % 10;
-        if (rem!=0&& num % rem == 0)
+        if (rem != 0 && num % rem == 0)
         {
-            count +=1;
+            count += 1;
         }
         // cout << "count" << count;
         tempNum = tempNum / 10;
@@ -20,12 +20,25 @@ int digitsSum(int num)
     return count;
 }
 
+int sumOfDigits(int num)
+{
+    int tempNum = num;
+    int sum = 0;
+    while (tempNum != 0 && tempNum > 0)
+    {
+        int rem = tempNum % 10;
+        sum = sum + rem;
+        tempNum /= 10;
+    }
+    return sum;
+}
+
 int main()
 {
-    int num =245;
+    int num = 245114;
 
-    int digitsum = digitsSum(num);
-    cout<<"result " << digitsum;
+    int digitsum = sumOfDigits(num);
+    cout << "result " << digitsum;
 
     return 0;
 }
