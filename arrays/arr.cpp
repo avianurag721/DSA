@@ -92,34 +92,81 @@ void rotateOneLeft(vector<int> arr)
     //  return 0;
 }
 
-void rotate(vector <int> &arr,int start,int end){
-    while(start<=end){
+void rotate(vector<int> &arr, int start, int end)
+{
+    while (start <= end)
+    {
         swap(arr[start], arr[end]);
         start++;
         end--;
     }
 }
 
-void rotateByKDigit(vector <int> &arr,int k){
+void rotateByKDigit(vector<int> &arr, int k)
+{
     k = k % arr.size();
     rotate(arr, 0, k - 1);
-    rotate(arr, k,arr.size()-1 );
-    rotate(arr, 0,arr.size()-1 );
-     for (int i = 0; i < arr.size(); i++)
+    rotate(arr, k, arr.size() - 1);
+    rotate(arr, 0, arr.size() - 1);
+    for (int i = 0; i < arr.size(); i++)
     {
         cout << arr[i] << " ";
     }
     cout << endl;
+}
 
+int largest(vector<int> arr)
+{
+    int largestelement = arr[0];
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] > largestelement)
+        {
+            largestelement = arr[i];
+        }
+    }
+    return largestelement;
+}
+int largestSecondLargest(vector<int> arr)
+{
+    int largestelement = arr[0];
+    int secondlargest = -1;
+    for (int i = 0; i < arr.size(); i++)
+    {
+        if (arr[i] > largestelement)
+        {
+            secondlargest = largestelement;
+            largestelement = arr[i];
+        }
+        else if (arr[i] > secondlargest && arr[i] != largestelement)
+        {
+            secondlargest = arr[i];
+        }
+    }
+    return secondlargest;
+}
+
+void leftrotatebyOne(vector<int> arr)
+{
+    int temp = arr[0];
+    for (int i = 0; i < arr.size(); i++)
+    {
+        arr[i] = arr[i + 1];
+    }
+    arr[arr.size() - 1] = temp;
+
+    for (int i = 0; i < arr.size(); i++)
+    {
+        cout << arr[i]<<" ";
+    }
 }
 
 int main()
 {
 
-    vector<int> arr = {1,2,3,4,5,6,7};
-    rotateByKDigit(arr,5);
-
-    // cout << (arr);
+    vector<int> arr = {1, 4, 5, 2, 6, 7, 8, 65};
+    /*  ans*/  leftrotatebyOne(arr);
+    // cout << (ans);
 
     return 0;
 }
